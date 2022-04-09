@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -7,27 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tugas 2 | Table & Form</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="font-montserrat">
     <!-- Navbar -->
     <nav
         class="flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white bg-opacity-80  shadow-md sm:items-baseline w-full fixed top-0 left-0">
         <div class="mb-2 sm:mb-0">
-            <p class="text-2xl no-underline text-grey-darkest hover:text-blue-dark">WP - 2</p>
+            <p class="text-4xl font-bold no-underline  text-transparent  bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 bg-clip-text">WP - 2</p>
         </div>
         <div class="mr-20">
             <a href="#table"
                 class="text-lg no-underline text-grey-darkest py-1 px-4 rounded-2xl hover:bg-gray-900 hover:text-white hover:text-blue-dark transition duration-500 ease-in-out ">Table</a>
             <a href="#form"
                 class="text-lg no-underline text-grey-darkest py-1 px-4 rounded-2xl hover:bg-gray-900 hover:text-white hover:text-blue-dark ml-6 transition duration-500 ease-in-out">Form</a>
-
         </div>
     </nav>
     <!-- Table -->
     <section id="table" class="w-1/2 mx-auto my-16 py-5">
         <h3
-            class="text-center text-4xl font-bold text-transparent my-4 bg-gradient-to-r from-indigo-500 via-slate-900 to-indigo-500 bg-clip-text">
+            class="text-center text-4xl font-bold my-4 text-gray-900">
             Faktur Penjualan</h3>
 
         <div class="rounded-lg shadow-xl">
@@ -94,7 +96,7 @@
             class=" sm:mx-24 md:mx-34 lg:mx-56 mx-auto  flex items-center space-y-4 py-10 font-semibold text-gray-500 flex-col">
 
             <h1 class="text-white text-4xl">Form Buku Tamu</h1>
-            <form method="post" id="form-wa">
+            <form method="POST" id="form-wa">
                 <input
                     class="w-full p-2 bg-gray-900 rounded-md border border-gray-700 focus:outline-none focus:border-green-700 mb-3 "
                     placeholder="Name" type="text" name="name" id="name">
@@ -111,6 +113,23 @@
             </form>
         </div>
     </section>
+    <script>
+        let submit = document.getElementById('submit');
+
+
+        submit.addEventListener('click', () => {
+            let name = document.querySelector('#name').value;
+            let telp = document.getElementById('telp').value;
+            let message = document.getElementById('message').value;
+            let text = message + '%0a%0a-' + name;
+            let win = window.open('https://api.whatsapp.com/send?phone=' + telp + '&text=' + text);
+            if (win) {
+                win.focus();
+            } else {
+                alert('Please allow popups for this website');
+            }
+        });
+    </script>
 </body>
 
 </html>
