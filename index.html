@@ -97,7 +97,7 @@
             class=" sm:mx-24 md:mx-34 lg:mx-56 mx-auto  flex items-center space-y-4 py-10 font-semibold text-gray-500 flex-col">
 
             <h1 class="text-white text-4xl">Form Buku Tamu</h1>
-            <form  method="GET" id="form-wa">
+            <form method="GET" id="form-wa">
                 <input
                     class="w-full p-2 bg-gray-900 rounded-md border border-gray-700 focus:outline-none focus:border-green-700 mb-3 "
                     placeholder="Name" type="text" name="name" id="name">
@@ -115,14 +115,28 @@
         </div>
     </section>
     <script>
+        // Fungsi merubah angka 0 diawal menjadi 62
+        function fixTelp(telp) {
+            let result = '';
+            if (telp[0] == 0) {
+                result = telp.replace('0', '62');
+            }
+            return result;
+        }
+        
         let submit = document.getElementById('submit');
 
+        // Fungsi untuk megirim data form saat di klik
         submit.addEventListener('click', function () {
+            // Mengambil nilai input form
             let name = document.getElementById('name').value;
             let telp = document.getElementById('telp').value;
             let message = document.getElementById('message').value;
             let text = message + '%0a%0a-' + name;
-            let win = window.open('https://api.whatsapp.com/send?phone=' + telp + '&text=' + text);
+
+            let noTelp = fixTelp(telp);
+
+            let win = window.open('https://api.whatsapp.com/send?phone=' + noTelp + '&text=' + text);
             if (win) {
                 win.focus();
             } else {
